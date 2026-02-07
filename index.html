@@ -1,0 +1,84 @@
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta name="color-scheme" content="light dark" />
+  <title>Copilot Studio Web Chat</title>
+
+  <!-- 기본 스타일: 전체 화면을 꽉 채우는 레이아웃 -->
+  <style>
+    /* 모바일 주소창 수축/확장에도 안정적으로 전고정(full-viewport) 처리 */
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      background: #0b0b0c; /* 로딩 전 배경 (다크 톤 권장) */
+    }
+    /* iOS 사파리 등에서 100vh 흔들림 방지 */
+    .app {
+      position: fixed;
+      inset: 0; /* top:0; right:0; bottom:0; left:0; */
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    .app__frame {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      /* 필요 시 둥근 모서리/그림자:
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+      */
+    }
+    /* 화면 회전에 따른 빈 공간/스크롤 방지 */
+    body { overflow: hidden; }
+
+    /* 가벼운 로딩 플래시 대비 */
+    .loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #d1d5db;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji;
+      letter-spacing: .2px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @media (prefers-color-scheme: light) {
+      body { background: #f8fafc; }
+      .loading { color: #374151; }
+    }
+  </style>
+
+  <!-- 캐시 메타(선택): iOS PWA처럼 주소창 영역 침범 대응 -->
+  <meta name="theme-color" content="#0b0b0c" />
+</head>
+<body>
+  <div class="app" id="app">
+    <iframe
+      class="app__frame"
+      title="Microsoft Copilot Studio Web Chat"
+      src="https://copilotstudio.microsoft.com/environments/Default-62ae463a-9f12-4edf-8544-4f6ca3834524/bots/copilots_header_2afd5/webchat?__version__=2"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+       const frame = document.querySelector('.app__frame');
+      const loading = document.getElementById('loading');
+
+      function hideLoading() {
+        if (loading) loading.style.display = 'none';
+      }
+
+      // 일부 브라우저는 'load' 보장 안될 수 있어 타임아웃 보조
+      frame.addEventListener('load', hideLoading);
+      setTimeout(hideLoading, 3000);
+    })();
+  </script>
+</body>
+</html>
