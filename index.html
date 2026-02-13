@@ -3,42 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copilot Studio Chatbot</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Copilot Chatbot</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        html, body {
-            width: 100%;
-            height: 100%;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%);
-        }
-        
+
         body {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
         }
-        
+
         .chatbot-container {
-            width: 100%;
-            height: 100%;
-            max-width: 900px;
-            max-height: 800px;
+            width: 400px;
+            height: 600px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
-                        0 0 40px rgba(196, 181, 253, 0.25);
-            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: #fff;
+            display: flex;
+            flex-direction: column;
             animation: slideUp 0.6s ease-out;
         }
-        
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .chatbot-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chatbot-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -49,75 +64,26 @@
                 transform: translateY(0);
             }
         }
-        
-        .chat-header {
-            background: linear-gradient(135deg, #c4b5fd 0%, #ddd6fe 100%);
-            padding: 24px;
-            color: #6b21a8;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 18px;
-            letter-spacing: 0.5px;
-        }
-        
-        .chat-header::before {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: #a78bfa;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
-        }
-        
-        iframe {
-            display: block;
-            border: none;
-            width: 100%;
-            height: calc(100% - 70px);
-        }
-        
-        /* 다크 모드 지원 */
-        @media (prefers-color-scheme: dark) {
-            html, body {
-                background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
-            }
-            
-            .chatbot-container {
-                background: #2d1b4e;
-            }
-            
-            .chat-header {
-                background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-                color: #f3e8ff;
-            }
-        }
-        
-        /* 모바일 반응형 */
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .chatbot-container {
-                max-width: 100%;
-                max-height: 100%;
-                border-radius: 12px;
-            }
-            
-            .chat-header {
-                padding: 16px;
-                font-size: 16px;
+                width: 90vw;
+                height: 80vh;
+                max-width: 400px;
+                max-height: 600px;
             }
         }
     </style>
 </head>
 <body>
     <div class="chatbot-container">
-        <div class="chat-header">
-            AI Assistant
+        <div class="chatbot-header">
+            🤖 Copilot Assistant
         </div>
-        <iframe 
-            src="https://copilotstudio.microsoft.com/environments/Default-62ae463a-9f12-4edf-8544-4f6ca3834524/bots/copilots_header_2afd5/webchat?__version__=2">
-        </iframe>
+        <div class="chatbot-wrapper">
+            <iframe src="https://copilotstudio.microsoft.com/environments/Default-62ae463a-9f12-4edf-8544-4f6ca3834524/bots/copilots_header_2afd5/webchat?__version__=2" frameborder="0"></iframe>
+        </div>
     </div>
 </body>
 </html>
