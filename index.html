@@ -1,48 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copilot Studio Chatbot</title>
     <style>
-        body {
-            background: linear-gradient(to right, #1e1e1e, #2e2e2e);
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-
-        .container {
-            text-align: center;
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5e6f0 0%, #e6f3ff 50%, #e6ffe6 100%);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* 헤더 */
+        .header {
+            background: linear-gradient(90deg, #e8d4f1 0%, #d4e8f7 100%);
             padding: 20px;
-            border-radius: 10px;
-            background-color: rgba(30, 30, 30, 0.9);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(200, 150, 220, 0.15);
+            border-bottom: 2px solid rgba(200, 150, 220, 0.3);
         }
-
+        
+        .header h1 {
+            color: #7a5f8f;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #9b7fb3;
+            font-size: 14px;
+        }
+        
+        /* 메인 콘텐츠 */
+        .container {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            overflow: hidden;
+        }
+        
+        /* 사이드바 (선택사항) */
+        .sidebar {
+            width: 200px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(200, 150, 220, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .sidebar h3 {
+            color: #7a5f8f;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sidebar-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #f5e6f0 0%, #e6f3ff 100%);
+            border-radius: 8px;
+            color: #7a5f8f;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid #d4b5e0;
+        }
+        
+        .sidebar-item:hover {
+            background: linear-gradient(135deg, #e8d4f1 0%, #d4e8f7 100%);
+            border-left-color: #b89fd0;
+            transform: translateX(5px);
+        }
+        
+        /* iframe 컨테이너 */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(200, 150, 220, 0.2);
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(220, 200, 235, 0.4);
+        }
+        
         iframe {
             width: 100%;
-            height: 500px;
+            height: 100%;
             border: none;
-            border-radius: 10px;
         }
-
-        @media (max-width: 600px) {
-            iframe {
-                height: 400px;
+        
+        /* 푸터 */
+        .footer {
+            background: linear-gradient(90deg, #d4e8f7 0%, #e6ffe6 100%);
+            padding: 15px 20px;
+            text-align: center;
+            color: #7a5f8f;
+            font-size: 12px;
+            border-top: 2px solid rgba(150, 200, 180, 0.3);
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                padding: 15px;
+            }
+            
+            .sidebar-item {
+                flex-shrink: 0;
+                min-width: 120px;
+                margin: 0;
+            }
+            
+            .header h1 {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 헤더 -->
+    <div class="header">
+        <h1>✨ Copilot Assistant</h1>
+        <p>도움이 필요하신가요? 언제든지 질문해주세요!</p>
+    </div>
+    
+    <!-- 메인 콘텐츠 -->
     <div class="container">
-        <h1>Welcome to Copilot Studio</h1>
-        <iframe src="https://copilotstudio.microsoft.com/environments/Default-62ae463a-9f12-4edf-8544-4f6ca3834524/bots/copilots_header_2afd5/webchat?__version__=2"></iframe>
+        <!-- 사이드바 (선택사항 - 제거 가능) -->
+        <div class="sidebar">
+            <h3>도움말</h3>
+            <div class="sidebar-item">📋 자주 묻는 질문</div>
+            <div class="sidebar-item">💡 팁 & 요령</div>
+            <div class="sidebar-item">📞 고객 지원</div>
+        </div>
+        
+        <!-- Chat iframe -->
+        <div class="chat-container">
+            <iframe 
+                src="https://copilotstudio.microsoft.com/environments/Default-62ae463a-9f12-4edf-8544-4f6ca3834524/bots/copilots_header_2afd5/webchat?__version__=2">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- 푸터 -->
+    <div class="footer">
+        <p>💬 Copilot Studio에서 제공하는 AI 어시스턴트</p>
     </div>
 </body>
 </html>
